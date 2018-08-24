@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Addressbook
 {
-    class LoginData
+    public class LoginData
     {
         private string username;
         private string password;

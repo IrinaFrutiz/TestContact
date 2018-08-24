@@ -58,14 +58,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactsData.cs" />
-    <Compile Include="LoginData.cs" />
-    <Compile Include="TestAddContacts.cs" />
+    <Compile Include="Data\ContactsData.cs" />
+    <Compile Include="Data\GroupData.cs" />
+    <Compile Include="Data\LoginData.cs" />
+    <Compile Include="Helpers\HelperBase.cs" />
+    <Compile Include="Helpers\HelperContact.cs" />
+    <Compile Include="Helpers\HelperGroup.cs" />
+    <Compile Include="Helpers\HelperLogin.cs" />
+    <Compile Include="Helpers\HelperNavigation.cs" />
+    <Compile Include="Helpers\ManagerAplication.cs" />
+    <Compile Include="Tests\BaseTests.cs" />
+    <Compile Include="Tests\TestAddContacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\TestAddGroup.cs" />
+    <Compile Include="Tests\TestDeleteContact.cs" />
+    <Compile Include="Tests\TestDeleteGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
