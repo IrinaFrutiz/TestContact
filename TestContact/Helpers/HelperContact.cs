@@ -10,22 +10,21 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook
 {
-    public class HelperContact
+    public class HelperContact : HelperBase
     {
-        private IWebDriver driver;
-        public HelperContact (IWebDriver driver)
-        { this.driver = driver; }
+        public HelperContact(ManagerAplication manager)
+            : base(manager)
+        {
+        }
         public void AddContactInfo(ContactsData con)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(con.Firstname);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(con.Lastname);
+            Type(By.Name("firstname"), con.Firstname);
+            Type(By.Name("lastname"), con.Lastname);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
         public void SelectContact(int number)
         {
-            driver.FindElement(By.Id("//input[@class='center[]'])[" + number + "]")).Click();
+            driver.FindElement(By.XPath("//input[@name='selected[]'])[" + number + "]")).Click();
             //x-path voprosu //*[@id="maintable"]/tbody/tr[2]/td[1]
         }
     }

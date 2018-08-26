@@ -23,12 +23,24 @@ namespace Addressbook
 
         public ManagerAplication ()
         {
-            helperLogin = new HelperLogin(driver);
-            helperNavigation = new HelperNavigation(driver, baseURL);
-            helperContact = new HelperContact(driver);
-            helperGroup = new HelperGroup(driver);
+            //FirefoxOptions options = new FirefoxOptions();
+            //options.BrowserExecutableLocation = @"c:\Ira\soft\Soft_for_test\FirefoxPortableESR\FirefoxPortable.exe";
+            driver = new FirefoxDriver();//options);
+            baseURL = "http://localhost";
+
+            helperLogin = new HelperLogin(this);
+            helperNavigation = new HelperNavigation(this, baseURL);
+            helperContact = new HelperContact(this);
+            helperGroup = new HelperGroup(this);
         }
 
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            } 
+        }
 
         public HelperLogin Auth
         {
@@ -70,6 +82,8 @@ namespace Addressbook
             }
     //Assert.AreEqual("", verificationErrors.ToString());
         }
+
+       
         //public Soft (driver, baseURL)
         // {
         // FirefoxOptions options = new FirefoxOptions();

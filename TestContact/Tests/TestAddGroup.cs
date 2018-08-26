@@ -15,11 +15,7 @@ namespace Addressbook
         {
             GroupData group = new GroupData("test name", "test header", "test fooder");
 
-            manA.Navi.GoToPage();
-            manA.Auth.Login(new LoginData("admin", "secret"));
-            manA.Navi.GoToGroupPage();
             manA.Groups.Create(group);
-            manA.Navi.GoToGroupPage();
             manA.Auth.Logout();
         }
         [Test]
@@ -27,11 +23,7 @@ namespace Addressbook
         {
             GroupData group = new GroupData("", "", "");
 
-            manA.Navi.GoToPage();
-            manA.Auth.Login(new LoginData("admin", "secret"));
-            manA.Navi.GoToGroupPage();
             manA.Groups.Create(group);
-            manA.Navi.GoToGroupPage();
             manA.Auth.Logout();
         }
     }

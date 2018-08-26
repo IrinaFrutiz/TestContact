@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook
 {
-    public class HelperGroup : BaseTests 
+    public class HelperGroup : HelperBase
     {
         
         public HelperGroup (ManagerAplication manager) 
@@ -18,12 +18,32 @@ namespace Addressbook
         {
         }
 
+        public HelperGroup Modification(int p, GroupData newData)
+        {
+            manager.Navi.GoToGroupPage();
+            SelectGroup(p);
+            InitGroupModif();
+            FillInfoInGroup(newData);
+            SubmitGroup();
+            manager.Navi.GoToGroupPage();
+            return this;
+        }
+        public HelperGroup Remove(int p)
+        {
+            manager.Navi.GoToGroupPage();
+            SelectGroup(p);
+            DeleteGroup();
+            manager.Navi.GoToGroupPage();
+            return this;
+        }
+
         public HelperGroup Create(GroupData group)
         {
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             CreateGroup();
             FillInfoInGroup(group);
             SubmitGroup();
+            manager.Navi.GoToGroupPage();
             return this;
         }
 
@@ -42,14 +62,25 @@ namespace Addressbook
         }
 
  
-        public HelperGroup DeleteGroup(int index)
+        public HelperGroup SelectGroup(int index)
         {
             driver.FindElement(By.Name("selected[]")).Click();
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             driver.FindElement(By.Name("selected[]")).Click();
-            driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
             return this;
         }
+
+        public HelperGroup DeleteGroup()
+        {
+        driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
+            return this;
+        }
+        public HelperGroup InitGroupModif()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update']")).Click();
+            return this;
+        }
+        
         public HelperGroup SubmitGroup()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -58,12 +89,9 @@ namespace Addressbook
 
         public HelperGroup FillInfoInGroup(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
 

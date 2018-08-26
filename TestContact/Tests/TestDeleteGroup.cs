@@ -16,11 +16,7 @@ namespace Addressbook
         [Test]
         public void Delete_Group_Test()
         {
-            manA.Navi.GoToPage();
-            manA.Auth.Login(new LoginData("admin", "secret"));
-            manA.Navi.GoToGroupPage();
-            manA.Groups.DeleteGroup(1);
-            manA.Navi.GoToGroupPage();
+            manA.Groups.Remove(1);
             manA.Auth.Logout();
         }
     }

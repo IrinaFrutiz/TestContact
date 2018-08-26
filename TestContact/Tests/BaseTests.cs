@@ -14,12 +14,11 @@ namespace Addressbook
     {
         protected ManagerAplication manA;
 
-
-
         [SetUp]
         public void SetupTest()
         {
             manA = new ManagerAplication();
+
             manA.Navi.GoToPage();
             manA.Auth.Login(new LoginData("admin", "secret"));
         }

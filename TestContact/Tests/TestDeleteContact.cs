@@ -14,8 +14,6 @@ namespace Addressbook
         [Test]
         public void DeleteContact()
         {
-            manA.Navi.GoToPage();
-            manA.Auth.Login(new LoginData("admin", "secret"));
             //manA.Contacts.SelectContact(10);
             //DeleteContacts();
             manA.Navi.GoToHomePage();

@@ -14,8 +14,6 @@ namespace Addressbook
         [Test]
         public void AddNewContactTest()
         {
-            manA.Navi.GoToPage();
-            manA.Auth.Login(new LoginData("admin", "secret"));
             manA.Navi.GoToAddNewContact();
             ContactsData con = new ContactsData("aaa", "bbb");
             con.Lastname = "111";

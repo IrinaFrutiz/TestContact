@@ -73,6 +73,7 @@
     <Compile Include="Tests\TestAddGroup.cs" />
     <Compile Include="Tests\TestDeleteContact.cs" />
     <Compile Include="Tests\TestDeleteGroup.cs" />
+    <Compile Include="Tests\TestModificationGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

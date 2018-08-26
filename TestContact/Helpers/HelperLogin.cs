@@ -10,16 +10,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook
 {
-    public class HelperLogin : BaseTests
+    public class HelperLogin : HelperBase
     {
-        public HelperLogin (ManagerAplication manager) : base(manager)
+        public HelperLogin (ManagerAplication manager) :
+            base(manager)
         {  }
         public void Login(LoginData log)
         {
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(log.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(log.Password);
+            Type(By.Name("user"), log.Username);
+            Type(By.Name("pass"), log.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
         public void Logout()

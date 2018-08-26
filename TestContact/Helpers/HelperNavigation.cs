@@ -10,11 +10,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook
 {
-    public class HelperNavigation : BaseTests 
+    public class HelperNavigation : HelperBase
     {
-
-        public HelperNavigation (IWebDriver driver, string baseURL)
-        { this.driver = driver;
+        public string baseURL;
+        public HelperNavigation (ManagerAplication manager, string baseURL) :
+            base(manager)
+        { 
             this.baseURL = baseURL;
         }
         public void GoToPage()
