@@ -12,7 +12,6 @@ namespace Addressbook
 {
     public class HelperGroup : HelperBase
     {
-        
         public HelperGroup (ManagerAplication manager) 
             : base (manager)
         {
@@ -20,30 +19,30 @@ namespace Addressbook
 
         public HelperGroup Modification(int p, GroupData newData)
         {
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             SelectGroup(p);
             InitGroupModif();
             FillInfoInGroup(newData);
             SubmitGroup();
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             return this;
         }
         public HelperGroup Remove(int p)
         {
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             SelectGroup(p);
             DeleteGroup();
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             return this;
         }
 
         public HelperGroup Create(GroupData group)
         {
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             CreateGroup();
             FillInfoInGroup(group);
             SubmitGroup();
-            manager.Navi.GoToGroupPage();
+            manA.Navi.GoToGroupPage();
             return this;
         }
 

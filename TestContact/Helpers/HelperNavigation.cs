@@ -13,8 +13,8 @@ namespace Addressbook
     public class HelperNavigation : HelperBase
     {
         public string baseURL;
-        public HelperNavigation (ManagerAplication manager, string baseURL) :
-            base(manager)
+        public HelperNavigation (ManagerAplication manA, string baseURL) :
+            base(manA)
         { 
             this.baseURL = baseURL;
         }

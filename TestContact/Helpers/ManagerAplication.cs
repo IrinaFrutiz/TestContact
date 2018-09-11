@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -15,13 +16,29 @@ namespace Addressbook
         public IWebDriver driver;
         public string baseURL;
         public bool acceptNextAlert = true;
-         
+
         protected HelperLogin helperLogin;
         protected HelperNavigation helperNavigation;
         protected HelperContact helperContact;
         protected HelperGroup helperGroup;
 
-        public ManagerAplication ()
+            ~ManagerAplication()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+
+            }
+            //Assert.AreEqual("", verificationErrors.ToString());
+        }
+
+
+        private static ThreadLocal<ManagerAplication> manA = new ThreadLocal<ManagerAplication>();
+
+        private ManagerAplication ()
         {
             //FirefoxOptions options = new FirefoxOptions();
             //options.BrowserExecutableLocation = @"c:\Ira\soft\Soft_for_test\FirefoxPortableESR\FirefoxPortable.exe";
@@ -32,6 +49,15 @@ namespace Addressbook
             helperNavigation = new HelperNavigation(this, baseURL);
             helperContact = new HelperContact(this);
             helperGroup = new HelperGroup(this);
+        }
+
+        public static ManagerAplication GetInstance()
+        {
+            if (! manA.IsValueCreated)
+            {
+                manA.Value = new ManagerAplication();
+            }
+            return manA.Value;
         }
 
         public IWebDriver Driver
@@ -70,18 +96,7 @@ namespace Addressbook
                 return helperGroup;
             }
         }
-        public void Stop ()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-
-            }
-    //Assert.AreEqual("", verificationErrors.ToString());
-        }
+     
 
        
         //public Soft (driver, baseURL)
