@@ -16,8 +16,8 @@ namespace Addressbook
         {
             //manA.Contacts.SelectContact(10);
             //DeleteContacts();
-            manA.Navi.GoToHomePage();
-            manA.Auth.Logout();
+            manager.Navi.GoToHomePage();
+            manager.Auth.Logout();
         }
         //public void DeleteContacts()
        // {

@@ -14,13 +14,13 @@ namespace Addressbook
         [Test]
         public void AddNewContactTest()
         {
-            manA.Navi.GoToAddNewContact();
+            manager.Navi.GoToAddNewContact();
             ContactsData con = new ContactsData("aaa", "bbb");
             con.Lastname = "111";
             con.Firstname = "222";
-            manA.Contacts.AddContactInfo(con);
-            manA.Navi.GoToHomePage();
-            manA.Auth.Logout();
+            manager.Contacts.AddContactInfo(con);
+            manager.Navi.GoToHomePage();
+            manager.Auth.Logout();
         }
     }
 }

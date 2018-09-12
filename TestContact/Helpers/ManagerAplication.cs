@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -14,6 +13,7 @@ namespace Addressbook
     public class ManagerAplication
     {
         public IWebDriver driver;
+        private StringBuilder verificationErrors;
         public string baseURL;
         public bool acceptNextAlert = true;
 
@@ -36,14 +36,16 @@ namespace Addressbook
         }
 
 
-        private static ThreadLocal<ManagerAplication> manA = new ThreadLocal<ManagerAplication>();
+        private static ThreadLocal<ManagerAplication> manager = new ThreadLocal<ManagerAplication>();
 
-        private ManagerAplication ()
+        public ManagerAplication ()
         {
-            //FirefoxOptions options = new FirefoxOptions();
-            //options.BrowserExecutableLocation = @"c:\Ira\soft\Soft_for_test\FirefoxPortableESR\FirefoxPortable.exe";
-            driver = new FirefoxDriver();//options);
+            FirefoxOptions options = new FirefoxOptions();
+            options.BrowserExecutableLocation = @"c:\Ira\soft\Soft_for_test\FirefoxPortableESR\FirefoxPortable.exe";
+            options.UseLegacyImplementation = true;
+            driver = new FirefoxDriver(options);
             baseURL = "http://localhost";
+            verificationErrors = new StringBuilder();
 
             helperLogin = new HelperLogin(this);
             helperNavigation = new HelperNavigation(this, baseURL);
@@ -53,11 +55,11 @@ namespace Addressbook
 
         public static ManagerAplication GetInstance()
         {
-            if (! manA.IsValueCreated)
+            if (!manager.IsValueCreated)
             {
-                manA.Value = new ManagerAplication();
+                manager.Value = new ManagerAplication();
             }
-            return manA.Value;
+            return manager.Value;
         }
 
         public IWebDriver Driver
@@ -96,17 +98,5 @@ namespace Addressbook
                 return helperGroup;
             }
         }
-     
-
-       
-        //public Soft (driver, baseURL)
-        // {
-        // FirefoxOptions options = new FirefoxOptions();
-        // options.BrowserExecutableLocation = @"c:\Ira\soft\Soft_for_test\FirefoxPortableESR\FirefoxPortable.exe";
-        // options.UseLegacyImplementation = true;
-        // driver = new FirefoxDriver(options);
-        // baseURL = "http://localhost";
-        //verificationErrors = new StringBuilder();
-        // }
     }
 }

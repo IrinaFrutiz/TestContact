@@ -18,8 +18,8 @@ namespace Addressbook
             newData.Header = null;
             newData.Footer = "new1";
 
-            manA.Groups.Modification(1, newData);
-            manA.Auth.Logout();
+            manager.Groups.Modification(1, newData);
+            manager.Auth.Logout();
         }
     }
 }

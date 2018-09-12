@@ -16,8 +16,8 @@ namespace Addressbook
         [Test]
         public void Delete_Group_Test()
         {
-            manA.Groups.Remove(1);
-            manA.Auth.Logout();
+            manager.Groups.Remove(1);
+            manager.Auth.Logout();
         }
     }
 }

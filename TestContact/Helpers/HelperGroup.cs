@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -19,30 +18,30 @@ namespace Addressbook
 
         public HelperGroup Modification(int p, GroupData newData)
         {
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             SelectGroup(p);
             InitGroupModif();
             FillInfoInGroup(newData);
             SubmitGroup();
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             return this;
         }
         public HelperGroup Remove(int p)
         {
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             SelectGroup(p);
             DeleteGroup();
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             return this;
         }
 
         public HelperGroup Create(GroupData group)
         {
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             CreateGroup();
             FillInfoInGroup(group);
             SubmitGroup();
-            manA.Navi.GoToGroupPage();
+            manager.Navi.GoToGroupPage();
             return this;
         }
 

@@ -15,16 +15,16 @@ namespace Addressbook
         {
             GroupData group = new GroupData("test name", "test header", "test fooder");
 
-            manA.Groups.Create(group);
-            manA.Auth.Logout();
+            manager.Groups.Create(group);
+            manager.Auth.Logout();
         }
         [Test]
         public void Add_Empty_Group_Test()
         {
             GroupData group = new GroupData(null, null, null);
 
-            manA.Groups.Create(group);
-            manA.Auth.Logout();
+            manager.Groups.Create(group);
+            manager.Auth.Logout();
         }
     }
 }

@@ -10,24 +10,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Addressbook
 {
-    public class BaseTests
+    public class BaseTests 
     {
-        protected ManagerAplication manA;
+        protected ManagerAplication manager;
 
         [SetUp]
         public void SetupTest()
         {
-            manA = TestSuiteFixture.manA;
+            manager = TestSuiteFixture.manager;
         }
-
-       
-
-
-        
-
-
-        
-
-
     }
 }

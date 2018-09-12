@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -13,8 +12,8 @@ namespace Addressbook
     public class HelperNavigation : HelperBase
     {
         public string baseURL;
-        public HelperNavigation (ManagerAplication manA, string baseURL) :
-            base(manA)
+        public HelperNavigation (ManagerAplication manager, string baseURL) :
+            base(manager)
         { 
             this.baseURL = baseURL;
         }
@@ -24,6 +23,10 @@ namespace Addressbook
         }
         public void GoToHomePage()
         {
+            if (driver.Url == baseURL + "/addressbook/")
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("home")).Click();
         }
 
@@ -33,6 +36,11 @@ namespace Addressbook
         }
         public void GoToGroupPage()
         {
+            if (driver.Url == baseURL + "/addressbook/group.php"
+                && IsElementPresent(By.Name("new"))
+                {
+                return;
+                 }
             driver.FindElement(By.LinkText("groups")).Click();
         }
     }
