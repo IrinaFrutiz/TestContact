@@ -17,7 +17,7 @@ namespace Addressbook
         [SetUp]
         public void SetupTest()
         {
-            manager = TestSuiteFixture.manager;
+            manager = ManagerAplication.GetInstance ();
         }
     }
 }

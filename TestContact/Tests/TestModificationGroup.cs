@@ -18,7 +18,9 @@ namespace Addressbook
             newData.Header = null;
             newData.Footer = "new1";
 
+            manager.Navi.GoToGroupPage();
             manager.Groups.Modification(1, newData);
+            manager.Navi.GoToGroupPage(); 
             manager.Auth.Logout();
         }
     }

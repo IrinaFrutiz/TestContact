@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using System.Threading;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -12,32 +12,16 @@ namespace Addressbook
 {
     public class ManagerAplication
     {
-        public IWebDriver driver;
+        protected IWebDriver driver;
         private StringBuilder verificationErrors;
         public string baseURL;
-        public bool acceptNextAlert = true;
 
         protected HelperLogin helperLogin;
         protected HelperNavigation helperNavigation;
         protected HelperContact helperContact;
         protected HelperGroup helperGroup;
-
-            ~ManagerAplication()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-
-            }
-            //Assert.AreEqual("", verificationErrors.ToString());
-        }
-
-
         private static ThreadLocal<ManagerAplication> manager = new ThreadLocal<ManagerAplication>();
-
+        
         public ManagerAplication ()
         {
             FirefoxOptions options = new FirefoxOptions();
@@ -52,12 +36,24 @@ namespace Addressbook
             helperContact = new HelperContact(this);
             helperGroup = new HelperGroup(this);
         }
-
+        ~ManagerAplication()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+        }
         public static ManagerAplication GetInstance()
         {
             if (!manager.IsValueCreated)
             {
-                manager.Value = new ManagerAplication();
+                ManagerAplication newInstance = new ManagerAplication() ;
+                newInstance.Navi.GoToHomePage();
+                manager.Value = newInstance;
             }
             return manager.Value;
         }

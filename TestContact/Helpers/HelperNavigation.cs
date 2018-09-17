@@ -37,7 +37,7 @@ namespace Addressbook
         public void GoToGroupPage()
         {
             if (driver.Url == baseURL + "/addressbook/group.php"
-                && IsElementPresent(By.Name("new"))
+                && IsElementPresent(By.Name("new")))
                 {
                 return;
                  }

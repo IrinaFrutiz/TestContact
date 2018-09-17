@@ -17,13 +17,32 @@ namespace Addressbook
         {  }
         public void Login(LoginData log)
         {
-            Type(By.Name("user"), log.Username);
-            Type(By.Name("pass"), log.Password);
+            if (IsloggedIn())
+            {
+                if (IsloggedIn(log))
+                {
+                    return;
+                }
+                Logout();
+            }
+            Type(By.Name("admin"), log.Username);
+            Type(By.Name("secret"), log.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
         public void Logout()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
+        }
+        public bool IsloggedIn()
+        {
+            return IsElementPresent(By.Name("logout"));
+        }
+
+        public bool IsloggedIn(LoginData log)
+        {
+            return IsloggedIn()
+                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text
+                == "(" + log.Username + ")";
         }
     }
 }

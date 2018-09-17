@@ -15,35 +15,31 @@ namespace Addressbook
             : base (manager)
         {
         }
+        public HelperGroup Create(GroupData group)
+        { 
+            CreateGroup();
+            FillInfoInGroup(group);
+            SubmitGroup();
+            return this;
+        }
 
+        
         public HelperGroup Modification(int p, GroupData newData)
         {
-            manager.Navi.GoToGroupPage();
             SelectGroup(p);
             InitGroupModif();
             FillInfoInGroup(newData);
             SubmitGroup();
-            manager.Navi.GoToGroupPage();
             return this;
         }
         public HelperGroup Remove(int p)
         {
-            manager.Navi.GoToGroupPage();
             SelectGroup(p);
             DeleteGroup();
-            manager.Navi.GoToGroupPage();
             return this;
         }
 
-        public HelperGroup Create(GroupData group)
-        {
-            manager.Navi.GoToGroupPage();
-            CreateGroup();
-            FillInfoInGroup(group);
-            SubmitGroup();
-            manager.Navi.GoToGroupPage();
-            return this;
-        }
+        
 
         public HelperGroup GroupCreationTest()
         {
@@ -70,7 +66,7 @@ namespace Addressbook
 
         public HelperGroup DeleteGroup()
         {
-        driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
             return this;
         }
         public HelperGroup InitGroupModif()
@@ -98,5 +94,17 @@ namespace Addressbook
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navi.GoToGroupPage
+            ICollection<IWebDriver> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebDriver element in elements)
+            {
+               groups.Add(new GroupData(element.Text));
+            }
+            return groups;
+        }
+
     }
 }

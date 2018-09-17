@@ -15,16 +15,23 @@ namespace Addressbook
             : base(manager)
         {
         }
-        public void AddContactInfo(ContactsData con)
+        public HelperContact AddContactInfo(ContactsData con)
         {
             Type(By.Name("firstname"), con.Firstname);
             Type(By.Name("lastname"), con.Lastname);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            return this;
         }
-        public void SelectContact(int number)
+        public HelperContact SelectContact()
         {
-            driver.FindElement(By.XPath("//input[@name='selected[]'])[" + number + "]")).Click();
-            //x-path voprosu //*[@id="maintable"]/tbody/tr[2]/td[1]
+            driver.FindElement(By.CssSelector("input[name=\"selected[]\"]")).Click();
+            return this;
+        }
+        public HelperContact DeleteContacts()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
         }
     }
 }

@@ -15,35 +15,11 @@ namespace Addressbook
         public void DeleteContact()
         {
             //manA.Contacts.SelectContact(10);
-            //DeleteContacts();
+            manager.Contacts.DeleteContacts();
             manager.Navi.GoToHomePage();
             manager.Auth.Logout();
         }
-        //public void DeleteContacts()
-       // {
-        //    driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-        //    Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
-       // }
-       // private string CloseAlertAndGetItsText()
-        //{
-         //   try
-          //  {
-           //     IAlert alert = driver.SwitchTo().Alert();
-           //     string alertText = alert.Text;
-           //     if (acceptNextAlert)
-           //     {
-           //         alert.Accept();
-           //     }
-           //     else
-           //     {
-           //         alert.Dismiss();
-           //     }
-           //     return alertText;
-           // }
-           // finally
-           // {
-           //     acceptNextAlert = true;
-           // }
         
+
     }
 }
