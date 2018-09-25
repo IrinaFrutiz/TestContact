@@ -20,8 +20,13 @@ namespace Addressbook
             manager.Groups.Create(group);
             manager.Navi.GoToGroupPage();
 
+            Assert.AreEqual(oldgroups.Count + 1, manager.Groups.GetGroupCount());
+
             List<GroupData> newgroups = manager.Groups.GetGroupList();
-            Assert.AreEqual(oldgroups.Count + 1, newgroups.Count);
+            oldgroups.Add(group);
+            oldgroups.Sort();
+            newgroups.Sort();
+            Assert.AreEqual(oldgroups, newgroups);
         }
         [Test]
         public void Add_Empty_Group_Test()
@@ -33,8 +38,14 @@ namespace Addressbook
             manager.Groups.Create(group);
             manager.Navi.GoToGroupPage();
 
+            Assert.AreEqual(oldgroups.Count + 1, manager.Groups.GetGroupCount());
+
             List<GroupData> newgroups = manager.Groups.GetGroupList();
-            Assert.AreEqual(oldgroups.Count + 1, newgroups.Count);
+            oldgroups.Add(group);
+            oldgroups.Sort();
+            newgroups.Sort();
+
+            Assert.AreEqual(oldgroups, newgroups);
         }
     }
 }

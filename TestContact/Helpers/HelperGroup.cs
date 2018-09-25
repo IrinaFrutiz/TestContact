@@ -15,7 +15,27 @@ namespace Addressbook
             : base (manager)
         {
         }
-        public HelperGroup Create(GroupData group)
+ 
+        private List<GroupData> groupCache = null;
+
+        public List<GroupData> GetGroupList()
+        {
+            if (groupCache == null)
+            {
+                groupCache = new List<GroupData>();
+                manager.Navi.GoToGroupPage();
+                ICollection<IWebDriver> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebDriver element in elements)
+                {
+                    groupCache.Add(new GroupData(element.Text)
+                    {
+                        Id = element.FindElement((By.TagName("input")).GetAttribute("value");
+                });
+            }
+            return new List<GroupData>(groupCache);
+        }
+    
+    public HelperGroup Create(GroupData group)
         { 
             CreateGroup();
             FillInfoInGroup(group);
@@ -32,6 +52,12 @@ namespace Addressbook
             SubmitGroup();
             return this;
         }
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public HelperGroup Remove(int p)
         {
             SelectGroup(p);
@@ -59,7 +85,7 @@ namespace Addressbook
         public HelperGroup SelectGroup(int index)
         {
             driver.FindElement(By.Name("selected[]")).Click();
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
@@ -67,6 +93,7 @@ namespace Addressbook
         public HelperGroup DeleteGroup()
         {
             driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
+            groupCache = null;
             return this;
         }
         public HelperGroup InitGroupModif()
@@ -78,6 +105,7 @@ namespace Addressbook
         public HelperGroup SubmitGroup()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCache = null;
             return this;
         }
 
@@ -92,19 +120,11 @@ namespace Addressbook
         public HelperGroup CreateGroup()
         {
             driver.FindElement(By.Name("new")).Click();
+            groupCache = null;
             return this;
         }
-        public List<GroupData> GetGroupList()
-        {
-            List<GroupData> groups = new List<GroupData>();
-            manager.Navi.GoToGroupPage
-            ICollection<IWebDriver> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebDriver element in elements)
-            {
-               groups.Add(new GroupData(element.Text));
-            }
-            return groups;
-        }
+
+     
 
     }
 }

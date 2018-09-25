@@ -20,7 +20,7 @@ namespace Addressbook
         protected HelperNavigation helperNavigation;
         protected HelperContact helperContact;
         protected HelperGroup helperGroup;
-        private static ThreadLocal<ManagerAplication> manager = new ThreadLocal<ManagerAplication>();
+        private static ThreadLocal<ManagerAplication> app = new ThreadLocal<ManagerAplication>();
         
         public ManagerAplication ()
         {
@@ -49,13 +49,13 @@ namespace Addressbook
         }
         public static ManagerAplication GetInstance()
         {
-            if (!manager.IsValueCreated)
+            if (!app.IsValueCreated)
             {
                 ManagerAplication newInstance = new ManagerAplication() ;
                 newInstance.Navi.GoToHomePage();
-                manager.Value = newInstance;
+                app.Value = newInstance;
             }
-            return manager.Value;
+            return app.Value;
         }
 
         public IWebDriver Driver
